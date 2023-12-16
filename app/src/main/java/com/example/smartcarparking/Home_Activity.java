@@ -40,7 +40,7 @@ public class Home_Activity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseFirestore firebaseFirestore;
     String userId;
-    private CardView logOut, editProfile, slotBooked, addMoney;
+    private CardView logOut, editProfile, slotBooked, addMoney, history;
     private SessionManager sessionManager;
 
     @Override
@@ -59,6 +59,7 @@ public class Home_Activity extends AppCompatActivity {
         addMoney = findViewById(R.id.addMoney);
         slotBooked = findViewById(R.id.slotBooked);
         editProfile = findViewById(R.id.editProfile);
+        history = findViewById(R.id.history);
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -144,6 +145,15 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Home_Activity.this, Addmoney_Activity.class));
+                finish();
+            }
+        });
+
+        //history page
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home_Activity.this, History_Activity.class));
                 finish();
             }
         });
