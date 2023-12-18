@@ -1,12 +1,10 @@
-package com.example.smartcarparking;
+package com.example.adminapp;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,13 +22,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class Login_Activity extends AppCompatActivity {
+public class AdminloginActivity extends AppCompatActivity {
 
     //variable declare
     private TextView signUpPage, forgetPassword;
@@ -44,10 +38,10 @@ public class Login_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_adminlogin);
 
         //find id
-        signUpPage = findViewById(R.id.signUpPage);
+        //signUpPage = findViewById(R.id.signUpPage);
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
         forgetPassword = findViewById(R.id.forgetPassword);
@@ -59,7 +53,7 @@ public class Login_Activity extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
         if (sessionManager.isLoggedIn()){
-            startActivity(new Intent(Login_Activity.this, Home_Activity.class));
+            startActivity(new Intent(AdminloginActivity.this, DashboardActivity.class));
             finish();
         }
 
@@ -71,31 +65,38 @@ public class Login_Activity extends AppCompatActivity {
                 String password = loginPassword.getText().toString();
 
                 if (email.matches("") || password.matches("")){
-                    Toast.makeText(Login_Activity.this, "Enter all field details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminloginActivity.this, "Enter all field details", Toast.LENGTH_SHORT).show();
                 }else {
 
                     progressDialog.setTitle("Please wait...");
                     progressDialog.show();
 
-                    firebaseAuth.signInWithEmailAndPassword(email, password)
-                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                @Override
-                                public void onSuccess(AuthResult authResult) {
-                                    Intent intent = new Intent(Login_Activity.this, Home_Activity.class);
-                                    startActivity(intent);
-                                    sessionManager.setLogin(true);
-                                    finish();
+                    if(email.matches("projectsdata100@gmail.com")){
+                        firebaseAuth.signInWithEmailAndPassword(email, password)
+                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                    @Override
+                                    public void onSuccess(AuthResult authResult) {
+                                        Intent intent = new Intent(AdminloginActivity.this, DashboardActivity.class);
+                                        startActivity(intent);
+                                        sessionManager.setLogin(true);
+                                        finish();
 
-                                    progressDialog.cancel();
-                                    Toast.makeText(Login_Activity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    progressDialog.cancel();
-                                    Toast.makeText(Login_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                        progressDialog.cancel();
+                                        Toast.makeText(AdminloginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        progressDialog.cancel();
+                                        Toast.makeText(AdminloginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }else {
+                        progressDialog.cancel();
+                        Toast.makeText(AdminloginActivity.this, "Email and Password are incorrect", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
 
                 /*loginEmail.setText("");
@@ -107,16 +108,7 @@ public class Login_Activity extends AppCompatActivity {
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login_Activity.this, Forgetpassword_Activity.class));
-                finish();
-            }
-        });
-
-        //signup page open
-        signUpPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login_Activity.this, Signup_Activity.class));
+                startActivity(new Intent(AdminloginActivity.this, ForgetpasswordActivity.class));
                 finish();
             }
         });
@@ -125,7 +117,7 @@ public class Login_Activity extends AppCompatActivity {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Dialog dialog = new Dialog(Login_Activity.this);
+                Dialog dialog = new Dialog(AdminloginActivity.this);
                 dialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
                         WindowManager.LayoutParams.WRAP_CONTENT);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
