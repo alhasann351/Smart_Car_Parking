@@ -2,8 +2,10 @@ package com.example.adminapp;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,10 +15,25 @@ import android.widget.ImageButton;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    //variable declare
+    private CardView addSlot;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        //find id
+        addSlot = findViewById(R.id.addSlot);
+
+        //slot adding page open
+        addSlot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, AddslotActivity.class));
+                finish();
+            }
+        });
 
         // Set up the OnBackPressedCallback
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {

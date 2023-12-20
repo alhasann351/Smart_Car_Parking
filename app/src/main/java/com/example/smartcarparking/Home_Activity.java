@@ -92,9 +92,6 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
                         if (userId != null){
                             SharedPreferences preferences =getSharedPreferences("AndroidLogin", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = preferences.edit();
