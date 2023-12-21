@@ -148,7 +148,7 @@ public class Booking_Activity extends AppCompatActivity {
     private void slotLoad() {
         progressDialog.setTitle("Please wait information loading...");
         progressDialog.show();
-        String id = "omNtpcBTTKVhOMeKzjoSKUwX4o33";
+        String id = "MxKbVNoSNhbsTrrOzZCKmZkJagY2";
 
             firebaseFirestore.collection("ParkingSlot").document(id).collection("Slots")
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

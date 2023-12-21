@@ -85,7 +85,7 @@ public class History_Activity extends AppCompatActivity {
     public void historyLoad(){
         //user data show
         userId = firebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+        DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
         CollectionReference subcollectionRef = documentReference.collection("Booking_Slot");
         progressDialog.setTitle("Please wait information loading...");
         progressDialog.show();

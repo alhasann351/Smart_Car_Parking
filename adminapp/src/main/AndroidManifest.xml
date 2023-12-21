@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartCarParking">
         <activity
+            android:name=".TotaluserActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddslotActivity"
             android:exported="false" />
         <activity

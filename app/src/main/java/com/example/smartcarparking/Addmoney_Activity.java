@@ -63,7 +63,7 @@ public class Addmoney_Activity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         //user data show
         userId = firebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+        DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
         CollectionReference subcollectionRef = documentReference.collection("Money");
         CollectionReference collectionReference = documentReference.collection("Booking_Slot");
         progressDialog.setTitle("Please wait information loading...");
@@ -160,7 +160,7 @@ public class Addmoney_Activity extends AppCompatActivity {
                 progressDialog.setTitle("Please wait...");
                 progressDialog.show();
 
-                DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+                DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
                 documentReference.collection("Money").add(bookingData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {

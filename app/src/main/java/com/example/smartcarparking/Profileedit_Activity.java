@@ -58,7 +58,7 @@ public class Profileedit_Activity extends AppCompatActivity {
 
         //user data show
         userId = firebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+        DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
         progressDialog.setTitle("Please wait information loading...");
         progressDialog.show();
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -111,7 +111,7 @@ public class Profileedit_Activity extends AppCompatActivity {
                     progressDialog.setTitle("Please wait...");
                     progressDialog.show();
 
-                    DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+                    DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
                     Map<String, Object> edit = new HashMap<>();
                     edit.put("name", name);
                     edit.put("phone", phone);

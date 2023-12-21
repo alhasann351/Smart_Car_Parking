@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 public class DashboardActivity extends AppCompatActivity {
 
     //variable declare
-    private CardView addSlot;
+    private CardView addSlot, totalUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,22 @@ public class DashboardActivity extends AppCompatActivity {
 
         //find id
         addSlot = findViewById(R.id.addSlot);
+        totalUser = findViewById(R.id.totalUser);
 
         //slot adding page open
         addSlot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, AddslotActivity.class));
+                finish();
+            }
+        });
+
+        //total user page open
+        totalUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DashboardActivity.this, TotaluserActivity.class));
                 finish();
             }
         });

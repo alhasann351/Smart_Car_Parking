@@ -2,6 +2,7 @@ package com.example.adminapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,9 @@ public class SlotAdapter extends RecyclerView.Adapter<SlotAdapter.MyViewHolder> 
         SlotModel slotModel = slotModelsArrayList.get(position);
         holder.slotName.setText(slotModel.getSlotName());
         holder.status.setText(slotModel.getStatus());
+        if(slotModel.getStatus().equals("Unavailable")){
+            holder.status.setTextColor(Color.RED);
+        }
         holder.slot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

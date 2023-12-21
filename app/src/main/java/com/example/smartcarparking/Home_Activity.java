@@ -70,7 +70,7 @@ public class Home_Activity extends AppCompatActivity {
         //user data show
         userId = firebaseAuth.getCurrentUser().getUid();
 
-        DocumentReference documentReference = firebaseFirestore.collection("User").document(firebaseAuth.getCurrentUser().getUid());
+        DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(firebaseAuth.getCurrentUser().getUid());
         progressDialog.setTitle("Please wait information loading...");
         progressDialog.show();
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {

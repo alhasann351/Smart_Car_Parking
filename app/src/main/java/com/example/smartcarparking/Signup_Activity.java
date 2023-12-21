@@ -23,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class Signup_Activity extends AppCompatActivity {
@@ -96,9 +97,9 @@ public class Signup_Activity extends AppCompatActivity {
                                     progressDialog.cancel();
                                     Toast.makeText(Signup_Activity.this, "Signup successful...", Toast.LENGTH_SHORT).show();
 
-
+                                    //String id =UUID.randomUUID().toString();
                                     firebaseFirestore.collection("User")
-                                            .document(FirebaseAuth.getInstance().getUid())
+                                            .document("id").collection("UserDetails").document(firebaseAuth.getUid())
                                             .set(new UserModel(name, phone, email, address, carNumber, rfidNumber, password));
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

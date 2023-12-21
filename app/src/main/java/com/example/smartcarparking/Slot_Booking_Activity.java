@@ -57,6 +57,7 @@ public class Slot_Booking_Activity extends AppCompatActivity {
     private static final String TIMER_KEY = "timer_key";
     private static long timeLeftInMillis;
     String id1;
+    String sStatus;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -85,13 +86,13 @@ public class Slot_Booking_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         id1 = intent.getStringExtra("id");
         String sName = intent.getStringExtra("slotName");
-        String sStatus = intent.getStringExtra("status");
+        sStatus = intent.getStringExtra("status");
         inputSlotNumber.setText(sName);
         //inputAvailableUnavailable.setText(sStatus);
 
         //user data show
         userId = firebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+        DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
         progressDialog.setTitle("Please wait information loading...");
         progressDialog.show();
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -196,7 +197,7 @@ public class Slot_Booking_Activity extends AppCompatActivity {
                 progressDialog.setTitle("Please wait...");
                 progressDialog.show();
 
-                DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
+                DocumentReference documentReference = firebaseFirestore.collection("User").document("id").collection("UserDetails").document(userId);
                 documentReference.collection("Booking_Slot").add(bookingData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -212,7 +213,7 @@ public class Slot_Booking_Activity extends AppCompatActivity {
                 });
 
                 //available unavailable
-                String id = "omNtpcBTTKVhOMeKzjoSKUwX4o33";
+                String id = "MxKbVNoSNhbsTrrOzZCKmZkJagY2";
                 //String ava = "Available";
                 String unav = "Unavailable";
                 Map<String, Object> edit = new HashMap<>();
@@ -258,9 +259,9 @@ public class Slot_Booking_Activity extends AppCompatActivity {
                 long second = (millisUntilFinished / 1000) % 60;
                 String timeFormate = String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minu, second);
                 Booking_Activity.timeLeft.setText(timeFormate);
+
                 Booking_Activity.le.setVisibility(View.GONE);
                 Booking_Activity.re.setVisibility(View.VISIBLE);
-
 
                 SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -276,11 +277,12 @@ public class Slot_Booking_Activity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Booking_Activity.timeLeft.setText("Slot available now");
+
                 Booking_Activity.le.setVisibility(View.VISIBLE);
                 Booking_Activity.re.setVisibility(View.GONE);
 
                 //available unavailable
-                String id = "omNtpcBTTKVhOMeKzjoSKUwX4o33";
+                String id = "MxKbVNoSNhbsTrrOzZCKmZkJagY2";
                 String ava = "Available";
                 //String unav = "Unavailable";
                 Map<String, Object> edit = new HashMap<>();

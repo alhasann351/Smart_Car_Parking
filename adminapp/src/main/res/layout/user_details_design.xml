@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/cardView"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:id="@+id/le"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:id="@+id/uName"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:id="@+id/uPhone"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:id="@+id/uEmail"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="address"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:id="@+id/uAddress"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="carNumber"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:id="@+id/uCarNumber"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="rfidNumber"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:layout_margin="10dp"
+                    android:id="@+id/uRfidNumber"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/update"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?android:selectableItemBackground"
+                    app:cardBackgroundColor="@color/yes"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/eng_regu"
+                            android:text="Update"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:foreground="?android:selectableItemBackground"
+                    app:cardBackgroundColor="@color/red"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/eng_regu"
+                            android:text="Delete"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
